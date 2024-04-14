@@ -19,22 +19,26 @@
     "pack": "cross-env NODE_ENV=production run-p pack:*",
     "pack:zip": "rimraf extension.zip && jszip-cli add extension/* -o ./extension.zip",
     "pack:crx": "crx pack extension -o ./extension.crx",
-    "pack:xpi": "cross-env WEB_EXT_ARTIFACTS_DIR=./ web-ext build --source-dir ./extension --filename extension.xpi --overwrite-dest",
     "clear": "rimraf --glob extension/dist extension/manifest.json extension.*",
     "lint": "eslint --cache .",
     "postinstall": "simple-git-hooks",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "@floating-ui/vue": "^1.0.6"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^2.13.3",
     "@ffflorian/jszip-cli": "^3.6.2",
     "@iconify/json": "^2.2.200",
+    "@timwheeler/monkey-fetch": "^1.5.0",
     "@types/chrome": "^0.0.266",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.12.7",
     "@types/webextension-polyfill": "^0.10.7",
     "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@unocss/eslint-plugin": "^0.59.0",
+    "@unocss/preset-rem-to-px": "^0.59.2",
     "@unocss/reset": "^0.59.2",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/compiler-sfc": "^3.4.21",
@@ -57,7 +61,13 @@
     "vite": "^5.2.8",
     "vue": "^3.4.21",
     "webext-bridge": "^6.0.1",
-    "webextension-polyfill": "^0.10.0"
+    "webextension-polyfill": "^0.10.0",
+    "ytmusic-api": "^5.2.1"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "ytmusic-api@5.2.1": "patches/ytmusic-api@5.2.1.patch"
+    }
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

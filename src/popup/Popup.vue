@@ -3,7 +3,7 @@
 
 <template>
   <div class="text-xl">
-    Hello
+    Some o la laoe
   </div>
 </template>
 

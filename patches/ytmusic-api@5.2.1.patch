@@ -1,0 +1,68 @@
+diff --git a/dist/YTMusic.d.ts b/dist/YTMusic.d.ts
+index 6d0055595cc8595417f9c7b1b4d57ce3ccf3e9b0..db8e491194f776d42e24566ed2041e6b514404a8 100644
+--- a/dist/YTMusic.d.ts
++++ b/dist/YTMusic.d.ts
+@@ -1,4 +1,5 @@
+ import { AlbumDetailed, AlbumFull, ArtistDetailed, ArtistFull, HomePageContent, PlaylistDetailed, PlaylistFull, SearchResult, SongDetailed, SongFull, VideoDetailed, VideoFull } from "./@types/types";
++
+ export default class YTMusic {
+     private cookiejar;
+     private config?;
+@@ -139,3 +140,4 @@ export default class YTMusic {
+      */
+     getHome(): Promise<HomePageContent[]>;
+ }
++
+diff --git a/dist/YTMusic.js b/dist/YTMusic.js
+index 7134fe30844c95006e33ac3bcf0a3fffd9c304b6..dc52e36c743d1a9a7bbf1504b8f40d6726972ca5 100644
+--- a/dist/YTMusic.js
++++ b/dist/YTMusic.js
+@@ -437,4 +437,5 @@ class YTMusic {
+         return results;
+     }
+ }
++
+ exports.default = YTMusic;
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index b6c3db2f46cd273289e17c8ecfd7221f082ef1e1..4bbbb0a35841d36e803f32caafc6cd6a0cf89b5b 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -1,3 +1,12 @@
+ import YTMusic from "./YTMusic";
++
+ export type { AlbumBasic, AlbumDetailed, AlbumFull, ArtistBasic, ArtistDetailed, ArtistFull, PlaylistDetailed, PlaylistFull, SearchResult, SongDetailed, SongFull, ThumbnailFull, VideoDetailed, VideoFull, } from "./@types/types";
++export { default as AlbumParser } from './parsers/AlbumParser'
++export { default as ArtistParser } from './parsers/ArtistParser'
++export { default as Parser } from './parsers/Parser'
++export { default as PlaylistParser } from './parsers/PlaylistParser'
++export { default as SearchParser } from './parsers/SearchParser'
++export { default as SongParser } from './parsers/SongParser'
++export { default as VideoParser } from './parsers/VideoParser'
++export { default as traverse } from './utils/traverse'
+ export default YTMusic;
+diff --git a/dist/index.js b/dist/index.js
+index eb1abf6e1e0199458930c4d2dbb217a697ae9191..4eacc344fe07e843be3c981bdcfb28b1dfd23734 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -4,4 +4,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+ const YTMusic_1 = __importDefault(require("./YTMusic"));
++const AlbumParser_1 = __importDefault(require("./parsers/AlbumParser"));
++const ArtistParser_1 = __importDefault(require("./parsers/ArtistParser"));
++const Parser_1 = __importDefault(require("./parsers/Parser"));
++const PlaylistParser_1 = __importDefault(require("./parsers/PlaylistParser"));
++const SearchParser_1 = __importDefault(require("./parsers/SearchParser"));
++const SongParser_1 = __importDefault(require("./parsers/SongParser"));
++const VideoParser_1 = __importDefault(require("./parsers/VideoParser"));
++const traverse_1 = require("./utils/traverse");
++
+ exports.default = YTMusic_1.default;
++exports.AlbumParser = AlbumParser_1.default
++exports.ArtistParser = ArtistParser_1.default
++exports.Parser = Parser_1.default
++exports.PlaylistParser = PlaylistParser_1.default
++exports.SearchParser = SearchParser_1.default
++exports.SongParser = SongParser_1.default
++exports.VideoParser = VideoParser_1.default
++exports.traverse = traverse_1.traverse

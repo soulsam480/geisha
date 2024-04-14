@@ -21,16 +21,12 @@ export default defineConfig({
     cssCodeSplit: false,
     emptyOutDir: false,
     sourcemap: isDev ? 'inline' : false,
+    minify: !isDev,
     lib: {
-      entry: r('src/background/main.ts'),
-      name: packageJson.name,
-      formats: ['iife'],
-    },
-    rollupOptions: {
-      output: {
-        entryFileNames: 'index.mjs',
-        extend: true,
+      entry: {
+        index: r('src/background/main.ts'),
       },
+      formats: ['es'],
     },
   },
 })

@@ -24,7 +24,6 @@ export const sharedConfig: UserConfig = {
     // https://github.com/antfu/unplugin-icons
     Icons({
       autoInstall: true,
-
     }),
 
     // https://github.com/unocss/unocss
@@ -62,6 +61,7 @@ export default defineConfig(({ command }) => ({
     },
     origin: `http://localhost:${port}`,
   },
+
   build: {
     watch: isDev
       ? {}
@@ -73,12 +73,11 @@ export default defineConfig(({ command }) => ({
     terserOptions: {
       mangle: false,
     },
+    minify: !isDev,
     rollupOptions: {
       input: {
-        options: r('src/options/index.html'),
         popup: r('src/popup/index.html'),
       },
     },
   },
-
 }))
