@@ -12,4 +12,7 @@ export default defineConfig({
     transformerDirectives(),
     transformerVariantGroup(),
   ],
+  content: {
+    filesystem: ['src/**/*.vue'],
+  },
 })

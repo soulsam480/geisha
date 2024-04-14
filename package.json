@@ -1,39 +1,21 @@
 {
   "name": "geisha",
   "displayName": "Geisha",
+  "type": "module",
   "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@8.15.4",
   "description": "[description]",
   "scripts": {
-    "dev": "pnpm clear && cross-env NODE_ENV=development run-p dev:*",
-    "dev:prepare": "esno scripts/prepare.ts",
-    "dev:background": "pnpm build:background --mode development",
-    "dev:web": "vite",
-    "dev:js": "pnpm build:js --mode development",
-    "build": "cross-env NODE_ENV=production run-s clear build:web build:prepare build:background build:js",
-    "build:prepare": "esno scripts/prepare.ts",
-    "build:background": "vite build --config vite.config.background.mts",
-    "build:web": "vite build",
-    "build:js": "vite build --config vite.config.content.mts",
-    "pack": "cross-env NODE_ENV=production run-p pack:*",
-    "pack:zip": "rimraf extension.zip && jszip-cli add extension/* -o ./extension.zip",
-    "pack:crx": "crx pack extension -o ./extension.crx",
-    "clear": "rimraf --glob extension/dist extension/manifest.json extension.*",
-    "lint": "eslint --cache .",
-    "postinstall": "simple-git-hooks",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@floating-ui/vue": "^1.0.6"
+    "dev": "vite dev",
+    "build": "vite build"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.13.3",
-    "@ffflorian/jszip-cli": "^3.6.2",
+    "@antfu/eslint-config": "^2.0.0-beta.23",
+    "@crxjs/vite-plugin": "2.0.0-beta.23",
     "@iconify/json": "^2.2.200",
     "@timwheeler/monkey-fetch": "^1.5.0",
     "@types/chrome": "^0.0.266",
-    "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.12.7",
     "@types/webextension-polyfill": "^0.10.7",
     "@typescript-eslint/eslint-plugin": "^7.6.0",
@@ -41,18 +23,10 @@
     "@unocss/preset-rem-to-px": "^0.59.2",
     "@unocss/reset": "^0.59.2",
     "@vitejs/plugin-vue": "^5.0.4",
-    "@vue/compiler-sfc": "^3.4.21",
     "@vueuse/core": "^10.9.0",
-    "chokidar": "^3.6.0",
-    "cross-env": "^7.0.3",
-    "crx": "^5.0.1",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "eslint-plugin-format": "^0.1.0",
-    "esno": "^4.7.0",
-    "fs-extra": "^11.2.0",
-    "kolorist": "^1.8.0",
     "lint-staged": "^15.2.2",
-    "npm-run-all": "^4.1.5",
     "rimraf": "^5.0.5",
     "simple-git-hooks": "^2.11.1",
     "typescript": "^5.4.5",
@@ -60,13 +34,13 @@
     "unplugin-icons": "^0.18.5",
     "vite": "^5.2.8",
     "vue": "^3.4.21",
-    "webext-bridge": "^6.0.1",
     "webextension-polyfill": "^0.10.0",
     "ytmusic-api": "^5.2.1"
   },
   "pnpm": {
     "patchedDependencies": {
-      "ytmusic-api@5.2.1": "patches/ytmusic-api@5.2.1.patch"
+      "ytmusic-api@5.2.1": "patches/ytmusic-api@5.2.1.patch",
+      "@unocss/vite@0.59.2": "patches/@unocss__vite@0.59.2.patch"
     }
   },
   "simple-git-hooks": {

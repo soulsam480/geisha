@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { useAppOpen } from '~/contentScripts/store/modelCacheStore'
+import { useAppOpen } from '~/content/store/modelCacheStore'
 import PhRocketLaunchFill from '~icons/ph/rocket-launch-fill'
 
 const appOpen = useAppOpen()

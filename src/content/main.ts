@@ -20,13 +20,13 @@ function injectScript(src: string) {
   })
 }
 
-injectScript(runtime.getURL('dist/contentScripts/fetch-mock.mjs'))
+injectScript(runtime.getURL('src/scripts/fetch-mock.js'))
 
 modelCache.listen()
 
 const APP_SELECTOR = 'ytmusic-settings-button.settings-button'
 
-addEventListener('load', () => {
+addEventListener('load', async () => {
   logger.info('page load')
 
   const container = document.createElement('div')
@@ -35,15 +35,19 @@ addEventListener('load', () => {
   const shadowDOM = container.attachShadow?.({ mode: __DEV__ ? 'open' : 'closed' }) || container
 
   const root = document.createElement('div')
-  const styleEl = document.createElement('link')
 
-  styleEl.setAttribute('rel', 'stylesheet')
-  styleEl.setAttribute('href', runtime.getURL('dist/contentScripts/style.css'))
+  if (__DEV__) {
+    const { devStyleEl } = await import('./style-compat/dev')
 
-  shadowDOM.appendChild(styleEl)
+    shadowDOM.appendChild(devStyleEl())
+  }
+  else {
+    const { prodStyleEl } = await import('./style-compat/prod')
+
+    shadowDOM.appendChild(prodStyleEl())
+  }
+
   shadowDOM.appendChild(root)
-
-  // document.body.appendChild(container)
 
   const target = document.querySelector<HTMLDivElement>(APP_SELECTOR)
 
