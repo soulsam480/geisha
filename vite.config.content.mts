@@ -21,14 +21,19 @@ export default defineConfig({
     cssCodeSplit: false,
     emptyOutDir: false,
     sourcemap: isDev ? 'inline' : false,
+    minify: !isDev,
     lib: {
-      entry: r('src/contentScripts/index.ts'),
+      entry: {
+        'index': r('src/contentScripts/index.ts'),
+        'main': r('src/contentScripts/main.ts'),
+        'fetch-mock': r('src/scripts/fetch-mock.ts'),
+      },
       name: packageJson.name,
-      formats: ['iife'],
+      formats: ['es'],
     },
     rollupOptions: {
       output: {
-        entryFileNames: 'index.global.js',
+        entryFileNames: '[name].mjs',
         extend: true,
       },
     },

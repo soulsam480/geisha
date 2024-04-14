@@ -17,10 +17,6 @@ export async function getManifest() {
       default_icon: './assets/icon-512.png',
       default_popup: './dist/popup/index.html',
     },
-    options_ui: {
-      page: './dist/options/index.html',
-      open_in_tab: true,
-    },
     background: {
       service_worker: './dist/background/index.mjs',
     },
@@ -38,16 +34,17 @@ export async function getManifest() {
     content_scripts: [
       {
         matches: [
-          '<all_urls>',
+          'https://music.youtube.com/*',
         ],
         js: [
-          'dist/contentScripts/index.global.js',
+          'dist/contentScripts/index.mjs',
         ],
+        run_at: 'document_start',
       },
     ],
     web_accessible_resources: [
       {
-        resources: ['dist/contentScripts/style.css'],
+        resources: ['dist/contentScripts/*'],
         matches: ['<all_urls>'],
       },
     ],

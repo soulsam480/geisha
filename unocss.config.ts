@@ -1,13 +1,15 @@
-import { presetIcons, presetUno, presetWind, transformerDirectives } from 'unocss'
+import { presetUno, presetWind, transformerDirectives, transformerVariantGroup } from 'unocss'
 import { defineConfig } from 'unocss/vite'
+import presetRemToPx from '@unocss/preset-rem-to-px'
 
 export default defineConfig({
   presets: [
     presetUno(),
-    presetIcons(),
     presetWind(),
+    presetRemToPx(),
   ],
   transformers: [
     transformerDirectives(),
+    transformerVariantGroup(),
   ],
 })

@@ -3,8 +3,8 @@
 
 <template>
   <div class="text-xl">
-    Hello
-  </div>
+    Some o la laoe and some morsss
+  </div> a snd
 </template>
 
 <style lang='scss' scoped></style>
